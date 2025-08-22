@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.exemplo.springboot_jpa_workshop.entities.Order;
 import com.exemplo.springboot_jpa_workshop.entities.User;
+import com.exemplo.springboot_jpa_workshop.entities.enums.OrderStatus;
 import com.exemplo.springboot_jpa_workshop.repositories.OrderRepository;
 import com.exemplo.springboot_jpa_workshop.repositories.UserRepository;
 
@@ -31,9 +32,9 @@ public class TestConfig implements CommandLineRunner{
         User u4 = new User(null, "Anderson Marcos Vinicius Arthur Dias", "anderson_dias@said.adv.br", "(46) 2830-7856", "IdQIucbCbi");
         User u5 = new User(null, "Alexandre Theo Santos", "alexandre.theo.santos@pibnet.com.br", "(24) 3670-8920", "r0H0xSSCIZ");
 
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), u2);
-        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), u1);
+        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.DELIVERED, u1);
+        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WAITING_PAYMENT, u2);
+        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.PAID ,u1);
 
         userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
