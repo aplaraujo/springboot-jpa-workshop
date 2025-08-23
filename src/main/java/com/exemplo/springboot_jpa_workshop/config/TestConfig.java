@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.exemplo.springboot_jpa_workshop.entities.Category;
 import com.exemplo.springboot_jpa_workshop.entities.Order;
 import com.exemplo.springboot_jpa_workshop.entities.User;
 import com.exemplo.springboot_jpa_workshop.entities.enums.OrderStatus;
+import com.exemplo.springboot_jpa_workshop.repositories.CategoryRepository;
 import com.exemplo.springboot_jpa_workshop.repositories.OrderRepository;
 import com.exemplo.springboot_jpa_workshop.repositories.UserRepository;
 
@@ -24,8 +26,18 @@ public class TestConfig implements CommandLineRunner{
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
+        
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+
         User u1 = new User(null, "Victor Heitor André Brito", "victor_heitor_brito@optovac.com.br", "(83) 3554-2144", "QWsxqyHJn7");
         User u2 = new User(null, "Caroline Pietra Sophie Novaes", "caroline_novaes@raioazul.com.br", "(68) 2749-7187", "3hqIBFaMc1");
         User u3 = new User(null, "Elza Bruna Débora Barbosa", "elza.bruna.barbosa@gaviola.com", "(68) 3899-6815", "fJ1cDKrE0j");
